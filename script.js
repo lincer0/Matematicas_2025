@@ -629,3 +629,4 @@ function setupEventListeners() {
 
 // Initialize the app
 document.addEventListener('DOMContentLoaded', initFlashcards);
+
