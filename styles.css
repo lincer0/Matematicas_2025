@@ -155,5 +155,7 @@ h1 {
 @media (max-width: 768px) {
     .flashcards-container {
         grid-template-columns: 1fr;
+        justify-items: center; /* Center flashcards horizontally */
+        row-gap: 20px; /* Vertical spacing */
     }
 }
