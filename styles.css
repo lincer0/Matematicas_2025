@@ -1,0 +1,159 @@
+:root {
+    --aritmetica-color: #4CAF50; /* Green */
+    --geometria-color: #2196F3; /* Blue */
+    --estadistica-color: #FF9800; /* Orange */
+    --text-color: #333;
+    --bg-color: #f5f5f5;
+    --card-size: 240px;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    margin: 0;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+h1 {
+    color: #2c3e50;
+}
+
+.filter-buttons {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn.active {
+    background-color: #2c3e50;
+    color: white;
+}
+
+.flashcards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(var(--card-size), 1fr));
+    column-gap: 30px; /* Horizontal spacing */
+    row-gap: 30px; /* Vertical spacing equal to horizontal */
+    padding: 20px;
+}
+
+.flashcard {
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15), 0 0 15px rgba(0, 0, 0, 0.2); /* Shadow matches card size exactly */
+    cursor: pointer;
+    position: relative;
+    width: var(--card-size);
+    height: var(--card-size);
+    perspective: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center; /* Evita la justificación */
+}
+
+.flashcard-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    border-radius: 8px;
+    transform-origin: 50% 50% 0; /* Rotate from exact center on own axis */
+}
+
+.flashcard.flipped .flashcard-inner {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front, .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    /* Removed padding to prevent offset in rotation */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; /* Center horizontally */
+    text-align: left; /* Align text naturally to the left */
+    border-radius: 8px;
+    overflow: auto;
+}
+
+.flashcard-question, .flashcard-answer {
+    width: 100%;
+    text-align: left; /* Align text naturally to the left */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    height: 100%; /* Ensure full height for vertical centering */
+}
+
+/* Added inner padding container inside flashcard front and back */
+.flashcard-content {
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+
+.flashcard-back {
+    transform: rotateY(180deg);
+}
+
+.flashcard.aritmetica .flashcard-front,
+.flashcard.aritmetica .flashcard-back {
+    background-color: var(--aritmetica-color);
+    color: white;
+}
+
+.flashcard.geometria .flashcard-front,
+.flashcard.geometria .flashcard-back {
+    background-color: var(--geometria-color);
+    color: white;
+}
+
+.flashcard.estadistica .flashcard-front,
+.flashcard.estadistica .flashcard-back {
+    background-color: var(--estadistica-color);
+    color: white;
+}
+
+.flashcard-category {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 0.8rem;
+    opacity: 0.8;
+}
+
+.flashcard-question {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+    .flashcards-container {
+        grid-template-columns: 1fr;
+    }
+}
